@@ -4,7 +4,7 @@ const casteSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
+
     },
     religion: {
         type: mongoose.Schema.Types.ObjectId,
