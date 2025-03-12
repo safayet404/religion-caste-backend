@@ -30,7 +30,10 @@ const getReligions = async (req, res) => {
 const getSingleReligions = async (req, res) => {
     try {
         const { id } = req.params
-        const singleReligions = await Religion.findById(id)
+        const singleReligions = await Religion.findById(id).populate({
+            path: "castes",
+            select: "name description", // Fetch only 'name' and 'description'
+        })
         res.status(200).json(singleReligions)
 
     } catch (error) {
