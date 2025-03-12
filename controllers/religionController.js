@@ -15,7 +15,8 @@ const createReligion = async (req, res) => {
 
 const getReligions = async (req, res) => {
     try {
-        const religions = await Religion.find().populate('castes').sort({ _id: - 1 });
+        const religions = await Religion.find().populate(path: 'castes',
+            select: 'name description').sort({ _id: - 1 });
         res.status(200).json(religions)
 
     } catch (error) {
