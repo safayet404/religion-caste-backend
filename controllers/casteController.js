@@ -4,13 +4,14 @@ const Religion = require("../models/ReligionModel");
 
 const createCaste = async (req, res) => {
     try {
-        const { name, religionId } = req.body
+        const { name, religionId, description } = req.body
         const religion = await Religion.findById(religionId)
 
         if (!religion) return res.status(404).json({ error: 'Religion not found' });
 
         const caste = new Caste({
             name,
+            description,
             religion: religion._id
         })
 
@@ -50,8 +51,8 @@ const getSingleCaste = async (req, res) => {
 const updateCaste = async (req, res) => {
     try {
         const { id } = req.params
-        const { name } = req.body
-        const caste = await Caste.findByIdAndUpdate(id, { name }, { new: true })
+        const { name, description } = req.body
+        const caste = await Caste.findByIdAndUpdate(id, { name, description }, { new: true })
 
         if (!caste) return res.status(404).json({ error: 'Caste not found' })
 

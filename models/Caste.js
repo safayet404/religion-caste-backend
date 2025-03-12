@@ -6,6 +6,11 @@ const casteSchema = new mongoose.Schema({
         required: true,
 
     },
+    description: {
+        type: String,
+        required: true,
+
+    },
     religion: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Religion',
