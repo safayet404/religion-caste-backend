@@ -6,9 +6,7 @@ const createCaste = async (req, res) => {
     try {
         const { name, religionId, description } = req.body
         const religion = await Religion.findById(religionId)
-
         if (!religion) return res.status(404).json({ error: 'Religion not found' });
-
         const caste = new Caste({
             name,
             description,
@@ -25,6 +23,7 @@ const createCaste = async (req, res) => {
         throw new Error(error)
     }
 }
+
 
 const getCastes = async (req, res) => {
     try {

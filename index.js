@@ -8,7 +8,13 @@ const app = express()
 const port = 5000
 
 dbConnection()
-app.use(cors())
+const corsOptions = {
+    origin: '*',  // Allow all origins (for testing only)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json())
 const religionRoutes = require('./routes/religionRoutes')
 const casteRoutes = require('./routes/casteRoutes')
