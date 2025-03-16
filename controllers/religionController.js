@@ -18,13 +18,14 @@ const getReligions = async (req, res) => {
         const religions = await Religion.find()
             .populate({
                 path: "castes",
-                select: "name description", // Fetch only 'name' and 'description'
+                select: "name description",
             })
             .sort({ _id: -1 });
         res.status(200).json(religions)
 
     } catch (error) {
-        res.status(400).json({ error: error.message })
+        console.error("Error fetching religions:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }
 const getSingleReligions = async (req, res) => {
