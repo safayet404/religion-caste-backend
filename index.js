@@ -8,11 +8,7 @@ const app = express()
 const port = 5000
 
 dbConnection()
-const corsOptions = {
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
+
 app.use(cors());
 
 app.use(bodyParser.json())
