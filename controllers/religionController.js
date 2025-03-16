@@ -56,6 +56,7 @@ const updateReligion = async (req, res) => {
     }
 }
 
+
 const deleteReligion = async (req, res) => {
     const { id } = req.params
     try {
