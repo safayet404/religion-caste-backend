@@ -9,7 +9,7 @@ const port = 5000
 
 dbConnection()
 const corsOptions = {
-    origin: '*',  // Allow all origins (for testing only)
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
@@ -18,9 +18,10 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json())
 const religionRoutes = require('./routes/religionRoutes')
 const casteRoutes = require('./routes/casteRoutes')
-
+const userRoutes = require('./routes/userRoutes')
 app.use('/api/religions', religionRoutes)
 app.use('/api/castes', casteRoutes)
+app.use('/api/user', userRoutes)
 
 app.use(morgan("dev"))
 app.listen(port, () => {
