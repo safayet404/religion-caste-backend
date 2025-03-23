@@ -32,9 +32,24 @@ const getCastes = async (req, res) => {
 
 
     } catch (error) {
-        throw new Error(error)
+        res.status(500).json({ message: error.message || "Internal Server Error" });
     }
 }
+
+const getCastesByReligion = async (req, res) => {
+    try {
+        const { religionId } = req.params;
+        const castes = await Caste.find({ religion: religionId });
+
+        if (!castes.length) {
+            return res.status(404).json({ message: "No castes found for this religion." });
+        }
+
+        res.status(200).json(castes);
+    } catch (error) {
+        res.status(500).json({ message: error.message || "Internal Server Error" });
+    }
+};
 
 const getSingleCaste = async (req, res) => {
     try {
@@ -43,7 +58,7 @@ const getSingleCaste = async (req, res) => {
         res.status(201).json(singleCaste)
 
     } catch (error) {
-        throw new Error(error)
+        res.status(500).json({ message: error.message || "Internal Server Error" });
     }
 }
 
@@ -57,7 +72,7 @@ const updateCaste = async (req, res) => {
 
         res.status(200).json(caste)
     } catch (error) {
-        throw new Error(error)
+        res.status(500).json({ message: error.message || "Internal Server Error" });
     }
 }
 
@@ -73,7 +88,7 @@ const deleteCaste = async (req, res) => {
 
         res.status(200).json({ message: "Caste deleted successfully" })
     } catch (error) {
-        throw new Error(error)
+        res.status(500).json({ message: error.message || "Internal Server Error" });
     }
 }
 
@@ -82,5 +97,6 @@ module.exports = {
     getCastes,
     getSingleCaste,
     updateCaste,
-    deleteCaste
+    deleteCaste,
+    getCastesByReligion
 }
